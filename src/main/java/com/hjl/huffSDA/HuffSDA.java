@@ -21,24 +21,24 @@ public class HuffSDA {
 
     }
 
-    public Map<Byte , Integer>  statistics(File source) {
-        Map<Byte , Integer> map = new HashMap<>();
+    public int []  statistics(File source) {
+        int [] table = new int[256];
         try(FileInputStream fis = new FileInputStream(source)){
             byte [] bytes = new byte[1024];
             int size;
             while((size = fis.read(bytes)) != -1){
                 for(int i = 0 ; i <size ; i ++){
                     byte b = bytes[i];
-                    map.put(b , map.getOrDefault(b , 0) + 1);
+                    table[b + 128]++;
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return map;
+        return table;
     }
 
-    public void HuffManTreeCreater(Map<Byte , Integer> map){
+    public void HuffManTreeCreater(int [] table){
 
     }
 }
